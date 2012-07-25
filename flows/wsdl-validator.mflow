@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="wsdl-validator">
+    <flow SubFlow="false" name="SOAPRequestReceiver">
+        <properties>
+            <property value="" name="processingStrategy2"/>
+            <property value="" name="bussinessEventsLabel"/>
+            <property value="false" name="tracking:enable-default-events"/>
+            <property-collection name="@http://www.mulesoft.org/schema/mule/ee/tracking/transaction;874468829"/>
+        </properties>
+        <description></description>
+        <lane hadOnlyOneElement="false" entity-id="dd02e0e4-433d-4b37-92c9-22de6a088ddd">
+            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/http/endpoint" name="HTTP" entity-id="cb4620d2-b444-4554-865a-546f6c4c8ba0">
+                <properties>
+                    <property value="one-way" name="exchange-pattern"/>
+                    <property value="request-response" name="exchange-pattern"/>
+                    <property value="http://www.mulesoft.org/schema/mule/http/endpoint" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property name="httpLabel"/>
+                    <property value="localhost" name="host"/>
+                    <property value="8881" name="port"/>
+                    <property value="person" name="path"/>
+                    <property name="method"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property name="address"/>
+                    <property name="encoding"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="mimeType"/>
+                    <property name="responseTimeout"/>
+                    <property name="followRedirects"/>
+                    <property name="connector-ref"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="responseTransformer-refs"/>
+                    <property name="user"/>
+                    <property name="password"/>
+                    <property name="contentType"/>
+                    <property name="keep-alive"/>
+                </properties>
+            </endpoint>
+            <pattern type="http://www.mulesoft.org/schema/mule/cxf/soapComponent" name="SOAP" entity-id="a71dadb3-6a31-459e-9a24-02d0d5e88cba">
+                <properties>
+                    <property name="configuration-ref"/>
+                    <property value="http://www.mulesoft.org/schema/mule/cxf/proxy-service" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property name="configuration-ref"/>
+                    <property name="bindingId"/>
+                    <property name="port"/>
+                    <property value="http://mulesoft/samples/wsdl-first" name="namespace"/>
+                    <property value="PersonService" name="service"/>
+                    <property name="onException"/>
+                    <property name="serviceClass"/>
+                    <property value="true" name="validationEnabled"/>
+                    <property value="envelope" name="payload"/>
+                    <property name="mtomEnabled"/>
+                    <property value="src/main/resources/person.wsdl" name="wsdlLocation"/>
+                    <property name="enableMuleSoapHeaders"/>
+                </properties>
+            </pattern>
+            <pattern type="http://www.mulesoft.org/schema/mule/cxf/soapComponent" name="SOAP" entity-id="0d0cd064-de0a-4db4-99b1-6aee5c5781e0">
+                <properties>
+                    <property name="configuration-ref"/>
+                    <property value="http://www.mulesoft.org/schema/mule/cxf/proxy-client" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property name="operation"/>
+                    <property name="serviceClass"/>
+                    <property name="decoupledEndpoint"/>
+                    <property value="envelope" name="payload"/>
+                    <property name="port"/>
+                    <property name="mtomEnabled"/>
+                    <property name="wsdlLocation"/>
+                    <property name="enableMuleSoapHeaders"/>
+                </properties>
+            </pattern>
+            <pattern type="http://www.mulesoft.org/schema/mule/core/object-to-string-transformer" name="Payload is XML" entity-id="ca952542-2c16-45f6-9854-a33ea548a697">
+                <properties>
+                    <property name="returnClass"/>
+                    <property name="ignoreBadInput"/>
+                    <property name="encoding"/>
+                    <property name="mimeType"/>
+                </properties>
+            </pattern>
+            <endpoint message-exchange-pattern="OneWay" direction="Outbound" type="http://www.mulesoft.org/schema/mule/vm/endpoint" name="Needed in order to set inbound property" entity-id="44fe94c6-232f-4f05-af05-45320e1d6bcc">
+                <properties>
+                    <property value="one-way" name="exchange-pattern"/>
+                    <property value="request-response" name="exchange-pattern"/>
+                    <property value="dummy" name="path"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property name="address"/>
+                    <property name="responseTimeout"/>
+                    <property name="encoding"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="mimeType"/>
+                    <property name="connector-ref"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="responseTransformer-refs"/>
+                </properties>
+            </endpoint>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="ResponseGenerationFlow">
+        <properties>
+            <property value="" name="processingStrategy2"/>
+            <property value="" name="bussinessEventsLabel"/>
+            <property value="false" name="tracking:enable-default-events"/>
+            <property-collection name="@http://www.mulesoft.org/schema/mule/ee/tracking/transaction;850450954"/>
+        </properties>
+        <description></description>
+        <lane hadOnlyOneElement="false" entity-id="4d554a31-42eb-43aa-9eea-2b911876287a">
+            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/vm/endpoint" name="VM" entity-id="110363d0-1ae8-462f-877e-213249097314">
+                <properties>
+                    <property value="one-way" name="exchange-pattern"/>
+                    <property value="request-response" name="exchange-pattern"/>
+                    <property value="dummy" name="path"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property name="address"/>
+                    <property name="responseTimeout"/>
+                    <property name="encoding"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="mimeType"/>
+                    <property name="connector-ref"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="responseTransformer-refs"/>
+                </properties>
+            </endpoint>
+            <pattern type="http://www.mulesoft.org/schema/mule/scripting/groovyComponent" name="Should Be DataMapper" entity-id="83d73c8a-1581-406f-b682-31d9252e2cd0">
+                <properties>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/scripting/script;0">
+                        <property value="import groovy.xml.MarkupBuilder&#xA;&#xA;def req = new XmlSlurper().parseText(payload.toString())&#xA;def writer = new StringWriter()&#xA;def resp = new MarkupBuilder(writer)&#xA;&#xA;def person = req.Body.RegisterPerson&#xA;&#xA;resp.Envelope(xmlns:'http://schemas.xmlsoap.org/soap/envelope/', 'xmlns:typ':'http://mulesoft/samples/wsdl-first/types'){&#xA;&#x9;Body(){&#xA;&#x9;&#x9;if(person.firstname != 'Albin'){&#xA;&#x9;&#x9;&#x9;'typ:RegisterPersonResponse'{&#xA;&#x9;&#x9;&#x9;&#x9;'typ:personId'('PersonId')&#xA;&#x9;&#x9;&#x9;&#x9;'typ:status'('Person Status')&#xA;&#x9;&#x9;&#x9;&#x9;'typ:addressline1'(person.addressline1)&#xA;&#x9;&#x9;&#x9;&#x9;'typ:city'(person.city)&#xA;&#x9;&#x9;&#x9;&#x9;'typ:postalcode'(person.postalcode)&#xA;&#x9;&#x9;&#x9;&#x9;'typ:state'(person.state)&#xA;&#x9;&#x9;&#x9;&#x9;'typ:country'(person.country)&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}else{&#xA;&#x9;&#x9;&#x9;Fault(){&#xA;&#x9;&#x9;&#x9;&#x9;'typ:UnknownPersonFault'(){&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;'typ:personId'('PersonId')&#xA;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;}&#xA;//Super ugly work around for problem in proxy implementation.&#xA;message.setOutboundProperty('http.status','200')&#xA;return writer.toString()" name="text"/>
+                        <property value="Groovy" name="engine"/>
+                    </property-collection>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/scripting/script-for-properties;0">
+                        <property value="import groovy.xml.MarkupBuilder&#xA;&#xA;def req = new XmlSlurper().parseText(payload.toString())&#xA;def writer = new StringWriter()&#xA;def resp = new MarkupBuilder(writer)&#xA;&#xA;def person = req.Body.RegisterPerson&#xA;&#xA;resp.Envelope(xmlns:'http://schemas.xmlsoap.org/soap/envelope/', 'xmlns:typ':'http://mulesoft/samples/wsdl-first/types'){&#xA;&#x9;Body(){&#xA;&#x9;&#x9;if(person.firstname != 'Albin'){&#xA;&#x9;&#x9;&#x9;'typ:RegisterPersonResponse'{&#xA;&#x9;&#x9;&#x9;&#x9;'typ:personId'('PersonId')&#xA;&#x9;&#x9;&#x9;&#x9;'typ:status'('Person Status')&#xA;&#x9;&#x9;&#x9;&#x9;'typ:addressline1'(person.addressline1)&#xA;&#x9;&#x9;&#x9;&#x9;'typ:city'(person.city)&#xA;&#x9;&#x9;&#x9;&#x9;'typ:postalcode'(person.postalcode)&#xA;&#x9;&#x9;&#x9;&#x9;'typ:state'(person.state)&#xA;&#x9;&#x9;&#x9;&#x9;'typ:country'(person.country)&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}else{&#xA;&#x9;&#x9;&#x9;Fault(){&#xA;&#x9;&#x9;&#x9;&#x9;'typ:UnknownPersonFault'(){&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;'typ:personId'('PersonId')&#xA;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;}&#xA;//Super ugly work around for problem in proxy implementation.&#xA;message.setOutboundProperty('http.status','200')&#xA;return writer.toString()" name="text"/>
+                        <property value="Groovy" name="engine"/>
+                    </property-collection>
+                </properties>
+            </pattern>
+        </lane>
+    </flow>
+    <description></description>
+</mule-configuration>

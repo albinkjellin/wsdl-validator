@@ -1,0 +1,16 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mulesoft/samples/wsdl-first/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:RegisterPersonResponse>
+         <typ:PersonResponse>
+            <typ:personId>?</typ:personId>
+            <typ:status>?</typ:status>
+            <typ:addressline1>?</typ:addressline1>
+            <typ:city>?</typ:city>
+            <typ:postalcode>?</typ:postalcode>
+            <typ:state>?</typ:state>
+            <typ:country>?</typ:country>
+         </typ:PersonResponse>
+      </typ:RegisterPersonResponse>
+   </soapenv:Body>
+</soapenv:Envelope>

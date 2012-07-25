@@ -1,0 +1,12 @@
+<typ:RegisterPerson xmlns:typ="http://mulesoft/samples/wsdl-first/types">
+	<typ:PersonRequest>
+		<typ:firstname>?</typ:firstname>
+		<typ:lastname>?</typ:lastname>
+		<typ:email>?</typ:email>
+		<typ:addressline1>?</typ:addressline1>
+		<typ:city>?</typ:city>
+		<typ:postalcode>?</typ:postalcode>
+		<typ:state>?</typ:state>
+		<typ:country>?</typ:country>
+	</typ:PersonRequest>
+</typ:RegisterPerson>
